@@ -1,0 +1,15 @@
+{
+  "name": "mock-server",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "fastify": "^3.12.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
