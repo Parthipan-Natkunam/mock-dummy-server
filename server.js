@@ -3,7 +3,15 @@ const dotenv = require("dotenv").config();
 const { mockData, mockProfile } = require("./mockData");
 
 fastify.get("/ping", async () => {
-  return { message: "Server is online" };
+  return { data: "Server is online" };
+});
+
+fastify.post("/logout", (req, res) => {
+  const { token } = req.headers;
+  if (token === process.env.DEFAULT_TOKEN) {
+    return { data: "success" };
+  }
+  return res.code(400).send();
 });
 
 fastify.get("/dashboard", (req, res) => {
@@ -37,8 +45,9 @@ fastify.post("/login", (req, res) => {
     const data = {
       username: process.env.DEFAULT_USERNAME,
       token: process.env.DEFAULT_TOKEN,
+      userId: process.env.DEFAULT_UID,
     };
-    return data;
+    return { data };
   }
   return res.code(401).send({ message: "Invalid username or password" });
 });
